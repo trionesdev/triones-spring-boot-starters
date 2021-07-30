@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "moensun.spring.exception",
+      "type": "com.moensun.spring.boot.exception.ExceptionProperties",
+      "sourceType": "com.moensun.spring.boot.exception.ExceptionProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "moensun.spring.exception.resource-path",
+      "type": "java.lang.String",
+      "sourceType": "com.moensun.spring.boot.exception.ExceptionProperties"
+    },
+    {
+      "name": "moensun.spring.exception.resource-paths",
+      "type": "java.lang.String[]",
+      "sourceType": "com.moensun.spring.boot.exception.ExceptionProperties"
+    }
+  ],
+  "hints": []
+}
