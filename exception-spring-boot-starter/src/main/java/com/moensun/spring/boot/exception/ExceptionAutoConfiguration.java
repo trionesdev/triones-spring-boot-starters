@@ -22,8 +22,7 @@ public class ExceptionAutoConfiguration {
     @ConditionalOnMissingBean
     public ExceptionMessageHandler exceptionMessageHandler() {
         ExceptionMessageHandler messageHandler = new ExceptionMessageHandler();
-        messageHandler.setResourceBundle(exceptionProperties.getResourcePath());
-        messageHandler.setResourceBundles(exceptionProperties.getResourcePaths());
+        messageHandler.setResourcePaths(exceptionProperties.getResourcePaths());
         return messageHandler;
     }
 }
