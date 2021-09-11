@@ -9,7 +9,7 @@ import com.moensun.commons.exception.spring.resource.ExceptionMessageHandler;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Configuration
+@Configuration(value = "com.moensun.spring.boot.exception.exceptionAutoConfiguration")
 @EnableConfigurationProperties(
         value = {
                 ExceptionProperties.class

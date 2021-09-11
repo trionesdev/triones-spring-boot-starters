@@ -11,6 +11,7 @@
     <name>MS:Boot</name>
     <modules>
         <module>exception-spring-boot-starter</module>
+        <module>context-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -32,18 +33,25 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
-                <scope>provided</scope>
+                <scope>compile</scope>
+                <optional>true</optional>
                 <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-configuration-processor</artifactId>
+                <scope>compile</scope>
                 <optional>true</optional>
                 <version>${spring-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.moensun.spring.boot</groupId>
                 <artifactId>exception-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.moensun.spring.boot</groupId>
+                <artifactId>context-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
