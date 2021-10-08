@@ -10,8 +10,8 @@
     <version>1.0-SNAPSHOT</version>
     <name>MS:Boot</name>
     <modules>
-        <module>exception-spring-boot-starter</module>
-        <module>context-spring-boot-starter</module>
+        <module>moensun-exception-spring-boot-starter</module>
+        <module>moensun-context-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -46,12 +46,12 @@
             </dependency>
             <dependency>
                 <groupId>com.moensun.spring.boot</groupId>
-                <artifactId>exception-spring-boot-starter</artifactId>
+                <artifactId>moensun-exception-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.moensun.spring.boot</groupId>
-                <artifactId>context-spring-boot-starter</artifactId>
+                <artifactId>moensun-context-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
