@@ -12,6 +12,7 @@
     <modules>
         <module>moensun-exception-spring-boot-starter</module>
         <module>moensun-context-spring-boot-starter</module>
+        <module>moensun-propagate-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -52,6 +53,11 @@
             <dependency>
                 <groupId>com.moensun.spring.boot</groupId>
                 <artifactId>moensun-context-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.moensun.spring.boot</groupId>
+                <artifactId>moensun-propagate-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
