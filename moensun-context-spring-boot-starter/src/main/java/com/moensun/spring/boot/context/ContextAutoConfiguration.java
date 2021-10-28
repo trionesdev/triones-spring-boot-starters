@@ -1,6 +1,6 @@
 package com.moensun.spring.boot.context;
 
-import com.moensun.commons.context.operator.OperateContext;
+import com.moensun.commons.context.actor.ActorContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class ContextAutoConfiguration {
 
     @Bean
-    public OperateContext operateContext(){
-        return new OperateContext();
+    public ActorContext operateContext(){
+        return new ActorContext();
     }
 }
