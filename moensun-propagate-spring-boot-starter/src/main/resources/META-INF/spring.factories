@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.moensun.spring.boot.propagate.PropagateAutoConfiguration,\
+  com.moensun.spring.boot.propagate.PropagateJaegerConfiguration
