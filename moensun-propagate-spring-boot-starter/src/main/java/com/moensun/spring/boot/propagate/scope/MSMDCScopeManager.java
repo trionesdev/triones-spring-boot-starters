@@ -1,11 +1,12 @@
 package com.moensun.spring.boot.propagate.scope;
 
 import com.moensun.commons.context.actor.ActorConstants;
+import com.moensun.commons.opentracing.util.BaggageUtils;
+import com.moensun.commons.opentracing.util.TllThreadLocalScopeManager;
 import io.jaegertracing.internal.JaegerSpanContext;
 import io.opentracing.Scope;
 import io.opentracing.ScopeManager;
 import io.opentracing.Span;
-import io.opentracing.util.ThreadLocalScopeManager;
 import org.slf4j.MDC;
 
 public class MSMDCScopeManager implements ScopeManager {
@@ -36,7 +37,7 @@ public class MSMDCScopeManager implements ScopeManager {
     }
 
     public static class Builder {
-        private ScopeManager scopeManager = new ThreadLocalScopeManager();
+        private ScopeManager scopeManager = new TllThreadLocalScopeManager();
         private String mdcTraceIdKey = "traceId";
         private String mdcSpanIdKey = "spanId";
         private String mdcSampledKey = "sampled";
@@ -107,8 +108,8 @@ public class MSMDCScopeManager implements ScopeManager {
             replace(mdcTraceIdKey, spanContext.toTraceId());
             replace(mdcSpanIdKey, spanContext.toSpanId());
             replace(mdcSampledKey, String.valueOf(spanContext.isSampled()));
-            replace(mdcTenantIdKey, spanContext.getBaggageItem(ActorConstants.MDC_TENANT_ID));
-            replace(mdcActorIdKey, spanContext.getBaggageItem(ActorConstants.MDC_ACTOR_ID));
+            replace(mdcTenantIdKey, spanContext.getBaggageItem(BaggageUtils.itemKey(ActorConstants.MDC_TENANT_ID)));
+            replace(mdcActorIdKey, spanContext.getBaggageItem(BaggageUtils.itemKey(ActorConstants.MDC_ACTOR_ID)));
         }
 
         private void replace(String key, String value) {
