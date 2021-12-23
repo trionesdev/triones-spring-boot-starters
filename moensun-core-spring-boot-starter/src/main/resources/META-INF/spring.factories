@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.moensun.spring.boot.core.CoreAutoConfiguration
+
+org.springframework.context.ApplicationContextInitializer=\
+  com.moensun.commons.core.spring.context.SpringContextSetter
