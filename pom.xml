@@ -48,12 +48,17 @@
             </dependency>
             <dependency>
                 <groupId>com.moensun.spring.boot</groupId>
-                <artifactId>moensun-exception-spring-boot-starter</artifactId>
+                <artifactId>moensun-core-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.moensun.spring.boot</groupId>
                 <artifactId>moensun-context-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.moensun.spring.boot</groupId>
+                <artifactId>moensun-exception-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
