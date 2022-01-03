@@ -1,26 +1,42 @@
 package com.moensun.spring.boot.core;
 
-import com.moensun.commons.core.spring.event.act.AbsActEventHandler;
-import com.moensun.commons.core.spring.event.act.ActEventAspect;
-import com.moensun.commons.core.spring.event.act.ActEventHandlerFactory;
+import com.moensun.commons.core.spring.event.act.*;
+import com.moensun.commons.core.spring.permission.act.ActPermissionAspect;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Configuration(value = "com.moensun.spring.boot.core.CoreAutoConfiguration")
 public class CoreAutoConfiguration {
 
     @Bean
-    public ActEventHandlerFactory actEventHandlerFactory(List<AbsActEventHandler> actEventHandlers){
-        return new ActEventHandlerFactory(actEventHandlers);
+    public ActEventBeforeAspect actEventBeforeAspect(){
+        return new ActEventBeforeAspect();
     }
 
     @Bean
-    public ActEventAspect actEventAspect(){
-        return new ActEventAspect();
+    public ActEventAfterAspect actEventAfterAspect(){
+        return new ActEventAfterAspect();
     }
 
+    @Bean
+    public ActEventAroundAspect actEventAroundAspect(){
+        return new ActEventAroundAspect();
+    }
+
+    @Bean
+    public ActEventAfterReturningAspect actEventAfterReturningAspect(){
+        return new ActEventAfterReturningAspect();
+    }
+
+    @Bean
+    public ActEventAfterThrowingAspect actEventAfterThrowingAspect(){
+        return new ActEventAfterThrowingAspect();
+    }
+
+    @Bean
+    public ActPermissionAspect actPermissionAspect(){
+        return new ActPermissionAspect();
+    }
 }
