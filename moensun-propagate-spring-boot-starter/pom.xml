@@ -30,6 +30,16 @@
         <dependency>
             <groupId>com.moensun.commons</groupId>
             <artifactId>commons-context</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.opentracing</groupId>
+                    <artifactId>opentracing-util</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.jaegertracing</groupId>
+                    <artifactId>jaeger-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.github.openfeign</groupId>
