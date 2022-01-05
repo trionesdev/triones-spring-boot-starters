@@ -15,12 +15,14 @@
         <module>moensun-propagate-spring-boot-starter</module>
         <module>moensun-core-spring-boot-starter</module>
         <module>moensun-mybatis-plus-spring-boot-starter</module>
+        <module>moensun-openfeign-spring-boot-starter</module>
     </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <spring-boot.version>2.5.3</spring-boot.version>
+        <spring-cloud.veriosn>2020.0.3</spring-cloud.veriosn>
         <mybatis-plus-boot.version>3.4.3.4</mybatis-plus-boot.version>
         <moensun-commons.version>1.0-SNAPSHOT</moensun-commons.version>
     </properties>
@@ -28,31 +30,39 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.veriosn}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>com.moensun.commons</groupId>
                 <artifactId>moensun-commons</artifactId>
                 <version>${moensun-commons.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-autoconfigure</artifactId>
-                <scope>compile</scope>
-                <optional>true</optional>
-                <version>${spring-boot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-configuration-processor</artifactId>
-                <scope>compile</scope>
-                <optional>true</optional>
-                <version>${spring-boot.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.opentracing.contrib</groupId>
+                <artifactId>opentracing-spring-jaeger-cloud-starter</artifactId>
+                <version>3.3.1</version>
+            </dependency>
+
+            <!-- moensun-boot-starter-->
             <dependency>
                 <groupId>com.moensun.spring.boot</groupId>
                 <artifactId>moensun-core-spring-boot-starter</artifactId>
@@ -78,6 +88,7 @@
                 <artifactId>moensun-mybatis-plus-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <!--moensun-boot-starter-->
         </dependencies>
     </dependencyManagement>
 
@@ -92,11 +103,11 @@
                 </repository>-->
         <snapshotRepository>
             <id>moensun</id>
-            <url>http://nexus.moensun.com/repository/maven-snapshots/</url>
+            <url>https://nexus.moensun.com/repository/maven-snapshots/</url>
         </snapshotRepository>
         <repository>
             <id>moensun</id>
-            <url>http://nexus.moensun.com/repository/maven-releases/</url>
+            <url>https://nexus.moensun.com/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
