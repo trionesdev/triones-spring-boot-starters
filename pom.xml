@@ -23,7 +23,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <spring-boot.version>2.5.3</spring-boot.version>
         <spring-cloud.veriosn>2020.0.3</spring-cloud.veriosn>
-        <mybatis-plus-boot.version>3.4.3.4</mybatis-plus-boot.version>
+        <mybatis-plus-boot.version>3.5.1</mybatis-plus-boot.version>
         <moensun-commons.version>1.0-SNAPSHOT</moensun-commons.version>
     </properties>
 
