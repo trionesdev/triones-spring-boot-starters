@@ -16,6 +16,7 @@
         <module>moensun-core-spring-boot-starter</module>
         <module>moensun-mybatis-plus-spring-boot-starter</module>
         <module>moensun-openfeign-spring-boot-starter</module>
+        <module>moensun-security-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -76,6 +77,11 @@
             <dependency>
                 <groupId>com.moensun.spring.boot</groupId>
                 <artifactId>moensun-exception-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.moensun.spring.boot</groupId>
+                <artifactId>moensun-security-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
