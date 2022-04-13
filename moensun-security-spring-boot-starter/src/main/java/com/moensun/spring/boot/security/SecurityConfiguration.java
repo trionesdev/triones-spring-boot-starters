@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @Configuration(value = "com.moensun.spring.boot.security.SecurityConfiguration")
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 @EnableConfigurationProperties(value = {
         SecurityProperties.class
 })
