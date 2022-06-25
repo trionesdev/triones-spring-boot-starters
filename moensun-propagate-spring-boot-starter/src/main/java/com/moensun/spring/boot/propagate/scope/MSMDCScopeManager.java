@@ -108,8 +108,8 @@ public class MSMDCScopeManager implements ScopeManager {
             replace(mdcTraceIdKey, spanContext.toTraceId());
             replace(mdcSpanIdKey, spanContext.toSpanId());
             replace(mdcSampledKey, String.valueOf(spanContext.isSampled()));
-            replace(mdcTenantIdKey, spanContext.getBaggageItem(BaggageUtils.itemKey(ActorConstants.MDC_TENANT_ID)));
-            replace(mdcActorIdKey, spanContext.getBaggageItem(BaggageUtils.itemKey(ActorConstants.MDC_ACTOR_ID)));
+            replace(mdcTenantIdKey, spanContext.getBaggageItem(BaggageUtils.itemKey(ActorConstants.X_TENANT_ID)));
+            replace(mdcActorIdKey, spanContext.getBaggageItem(BaggageUtils.itemKey(ActorConstants.X_ACTOR_ID)));
         }
 
         private void replace(String key, String value) {
