@@ -41,8 +41,8 @@ public class MSMDCScopeManager implements ScopeManager {
         private String mdcTraceIdKey = "traceId";
         private String mdcSpanIdKey = "spanId";
         private String mdcSampledKey = "sampled";
-        private String mdcTenantIdKey = ActorConstants.X_TENANT_ID;
-        private String mdcActorIdKey = ActorConstants.X_ACTOR_ID;
+        private String mdcTenantIdKey = ActorConstants.MDC_TENANT_ID;
+        private String mdcActorIdKey = ActorConstants.MDC_ACTOR_ID;
 
         public Builder withScopeManager(ScopeManager scopeManager) {
             this.scopeManager = scopeManager;
