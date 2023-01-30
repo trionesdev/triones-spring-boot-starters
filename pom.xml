@@ -12,9 +12,7 @@
     <modules>
         <module>moensun-exception-spring-boot-starter</module>
         <module>moensun-context-spring-boot-starter</module>
-        <module>moensun-propagate-spring-boot-starter</module>
         <module>moensun-core-spring-boot-starter</module>
-        <module>moensun-mybatis-plus-spring-boot-starter</module>
         <module>moensun-openfeign-spring-boot-starter</module>
         <module>moensun-security-spring-boot-starter</module>
     </modules>
