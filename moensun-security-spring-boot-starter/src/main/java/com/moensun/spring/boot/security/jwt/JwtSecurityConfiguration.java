@@ -33,20 +33,22 @@ public class JwtSecurityConfiguration {
     private final SecurityProperties securityProperties;
     private final JwtSecurityProperties jwtSecurityProperties;
 
+    private final String[] ignoreMatchers = {"/favicon.ico", "/v3/api-docs/**", "/v2/api-docs", "/webjars/**", "/swagger-resources/**",
+            "/swagger-ui/**", "/swagger-ui.html", "/actuator/**", "/websocket/**"};
 
     @Bean
     public JwtFacade jwtFacade() {
         return new JwtFacade(JwtConfig.builder().secret(jwtSecurityProperties.getSecret()).expiration(jwtSecurityProperties.getExpiration()).build());
     }
 
-    @Bean
-    WebSecurityCustomizer webSecurityCustomizer() {
-        String[] ignoreMatchers = {"/favicon.ico", "/v3/api-docs/**", "/v2/api-docs", "/webjars/**", "/swagger-resources/**",
-                "/swagger-ui/**", "/swagger-ui.html", "/actuator/**", "/websocket/**"};
-        List<String> ignoreMatcherList = Lists.newArrayList(ignoreMatchers);
-        ignoreMatcherList.addAll(Lists.newArrayList(securityProperties.getIgnoreMatchers()));
-        return (web) -> web.ignoring().antMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()]));
-    }
+//    @Bean
+//    WebSecurityCustomizer webSecurityCustomizer() {
+//        String[] ignoreMatchers = {"/favicon.ico", "/v3/api-docs/**", "/v2/api-docs", "/webjars/**", "/swagger-resources/**",
+//                "/swagger-ui/**", "/swagger-ui.html", "/actuator/**", "/websocket/**"};
+//        List<String> ignoreMatcherList = Lists.newArrayList(ignoreMatchers);
+//        ignoreMatcherList.addAll(Lists.newArrayList(securityProperties.getIgnoreMatchers()));
+//        return (web) -> web.ignoring().antMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()]));
+//    }
 
     @Bean
     SecurityFilterChain securityWebFilterChain(HttpSecurity http, JwtFacade jwtFacade) throws Exception {
@@ -60,10 +62,14 @@ public class JwtSecurityConfiguration {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtTokenConfig, jwtFacade, actorContext);
         JwtServerConfigurer<HttpSecurity> jwtServerConfigurer = new JwtServerConfigurer<>(applicationContext, jwtAuthenticationFilter);
 
+        List<String> ignoreMatcherList = Lists.newArrayList(ignoreMatchers);
+        ignoreMatcherList.addAll(Lists.newArrayList(securityProperties.getIgnoreMatchers()));
+
         http.csrf().disable()
                 .anonymous()
                 .and().authorizeRequests(authorizeRequests ->
                         authorizeRequests
+                                .antMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()])).permitAll()
                                 .antMatchers(securityProperties.getExcludeMatchers()).permitAll()
                                 .antMatchers(HttpMethod.GET, securityProperties.getExcludeGetMatchers()).permitAll()
                                 .antMatchers(HttpMethod.POST, securityProperties.getExcludePostMatchers()).permitAll()
