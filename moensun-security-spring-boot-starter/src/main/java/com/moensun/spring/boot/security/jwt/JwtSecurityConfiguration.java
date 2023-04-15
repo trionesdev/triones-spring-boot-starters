@@ -80,7 +80,7 @@ public class JwtSecurityConfiguration {
                 )
                 .apply(jwtServerConfigurer)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().exceptionHandling().authenticationEntryPoint(new JwtAuthenticationEntryPoint());
+                .and().exceptionHandling((exceptions) -> exceptions.authenticationEntryPoint(new JwtAuthenticationEntryPoint()));
         return http.build();
     }
 
