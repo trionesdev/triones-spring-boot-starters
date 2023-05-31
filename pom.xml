@@ -16,6 +16,7 @@
         <module>moensun-mybatis-plus-spring-boot-starter</module>
         <module>moensun-openfeign-spring-boot-starter</module>
         <module>moensun-security-spring-boot-starter</module>
+        <module>moensun-opentelemetry-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -47,6 +48,13 @@
                 <groupId>com.moensun.commons</groupId>
                 <artifactId>moensun-commons</artifactId>
                 <version>${moensun-commons.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.moensun.opentelemetry</groupId>
+                <artifactId>opentelemetry-spring-boot-starters</artifactId>
+                <version>1.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
