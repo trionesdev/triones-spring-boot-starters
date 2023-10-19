@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConditionalOnProperty(prefix = "feign.logger", value = "enable", havingValue = "false")
+@ConditionalOnProperty(prefix = "feign.logger", value = "enable", havingValue = "true")
 public class LoggerConfiguration {
 
     @Bean
