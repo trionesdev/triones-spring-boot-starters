@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.moensun.spring.boot.security.SecurityConfiguration,\
-  com.moensun.spring.boot.security.jwt.JwtSecurityConfiguration
