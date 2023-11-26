@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ConfigurationProperties("ms.security.jwt")
+@ConfigurationProperties("triones.security.jwt")
 public class JwtSecurityProperties {
     private Boolean enabled;
     private Boolean local = true;

@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ConfigurationProperties("ms.security")
+@ConfigurationProperties("triones.security")
 public class SecurityProperties {
     private String[] excludeMatchers = {};
     private String[] excludeGetMatchers = {};

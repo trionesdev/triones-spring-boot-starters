@@ -22,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Configuration(value = "com.moensun.spring.boot.security.jwt.JwtSecurityConfiguration")
+@Configuration(value = "com.moensun.boot.autoconfigure.security.jwt.JwtSecurityConfiguration")
 @EnableConfigurationProperties(value = {
         JwtSecurityProperties.class
 })
