@@ -1,4 +1,4 @@
-package com.moensun.boot.autoconfigure.context;
+package com.moensun.boot.context.autoconfigure;
 
 import com.moensun.commons.context.actor.ActorContext;
 import lombok.RequiredArgsConstructor;

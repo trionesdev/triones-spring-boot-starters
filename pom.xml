@@ -10,9 +10,10 @@
     <version>1.0-SNAPSHOT</version>
     <name>Triones:Boot</name>
     <modules>
+        <module>triones-spring-boot-starter</module>
         <module>triones-mybatis-plus-spring-boot-starter</module>
         <module>triones-security-spring-boot-starter</module>
-        <module>triones-spring-boot-starter</module>
+        <module>triones-openfeign-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -20,7 +21,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <spring-boot.version>2.7.4</spring-boot.version>
         <spring-cloud.veriosn>2021.0.5</spring-cloud.veriosn>
-        <mybatis-plus-boot.version>3.5.3.1</mybatis-plus-boot.version>
+        <mybatis-plus-boot.version>3.5.4.1</mybatis-plus-boot.version>
         <moensun-commons.version>1.0-SNAPSHOT</moensun-commons.version>
     </properties>
 
@@ -56,6 +57,11 @@
 
             <!-- moensun-boot-starter-->
 
+            <dependency>
+                <groupId>com.moensun.boot</groupId>
+                <artifactId>triones-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.moensun.boot</groupId>
                 <artifactId>triones-security-spring-boot-starter</artifactId>
