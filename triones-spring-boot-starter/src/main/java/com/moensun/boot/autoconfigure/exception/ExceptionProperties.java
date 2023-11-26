@@ -1,4 +1,4 @@
-package com.moensun.autoconfigure.exception;
+package com.moensun.boot.autoconfigure.exception;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

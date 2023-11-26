@@ -1,7 +1,7 @@
-package com.moensun.autoconfigure.security.jwt;
+package com.moensun.boot.autoconfigure.security.jwt;
 
 import com.google.common.collect.Lists;
-import com.moensun.autoconfigure.security.SecurityProperties;
+import com.moensun.boot.autoconfigure.security.SecurityProperties;
 import com.moensun.commons.context.actor.ActorContext;
 import com.moensun.commons.core.jwt.JwtConfig;
 import com.moensun.commons.core.jwt.JwtFacade;

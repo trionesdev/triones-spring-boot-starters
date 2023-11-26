@@ -1,4 +1,4 @@
-package com.moensun.autoconfigure.security.jwt;
+package com.moensun.boot.autoconfigure.security.jwt;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

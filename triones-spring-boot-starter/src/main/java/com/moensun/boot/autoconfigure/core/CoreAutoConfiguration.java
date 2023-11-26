@@ -1,4 +1,4 @@
-package com.moensun.autoconfigure.core;
+package com.moensun.boot.autoconfigure.core;
 
 import com.moensun.commons.core.spring.event.act.*;
 import com.moensun.commons.core.spring.permission.act.ActPermissionAspect;
