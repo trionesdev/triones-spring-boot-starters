@@ -58,17 +58,17 @@
 
             <dependency>
                 <groupId>com.moensun.boot</groupId>
-                <artifactId>moensun-security-spring-boot-starter</artifactId>
+                <artifactId>triones-security-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.moensun.boot</groupId>
-                <artifactId>moensun-openfeign-spring-boot-starter</artifactId>
+                <artifactId>triones-openfeign-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.moensun.boot</groupId>
-                <artifactId>moensun-mybatis-plus-spring-boot-starter</artifactId>
+                <artifactId>triones-mybatis-plus-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--moensun-boot-starter-->
