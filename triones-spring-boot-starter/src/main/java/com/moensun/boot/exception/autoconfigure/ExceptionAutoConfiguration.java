@@ -1,4 +1,4 @@
-package com.moensun.boot.autoconfigure.exception;
+package com.moensun.boot.exception.autoconfigure;
 
 import com.moensun.commons.exception.spring.resource.ExceptionMessageHandler;
 import lombok.RequiredArgsConstructor;
