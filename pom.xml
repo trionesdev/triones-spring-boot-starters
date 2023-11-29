@@ -21,7 +21,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <spring-boot.version>2.7.4</spring-boot.version>
         <spring-cloud.veriosn>2021.0.5</spring-cloud.veriosn>
-        <mybatis-plus-boot.version>3.5.3.1</mybatis-plus-boot.version>
+        <mybatis-plus-boot.version>3.5.4.1</mybatis-plus-boot.version>
         <moensun-commons.version>1.0-SNAPSHOT</moensun-commons.version>
     </properties>
 
@@ -105,7 +105,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.11.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -115,12 +115,12 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>2.8.1</version>
+                <version>2.16.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>3.0.1</version>
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <useReleaseProfile>false</useReleaseProfile>
