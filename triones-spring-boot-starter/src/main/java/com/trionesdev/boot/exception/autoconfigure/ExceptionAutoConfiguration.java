@@ -1,6 +1,6 @@
-package com.moensun.boot.exception.autoconfigure;
+package com.trionesdev.boot.exception.autoconfigure;
 
-import com.moensun.commons.exception.spring.resource.ExceptionMessageHandler;
+import com.trionesdev.commons.exception.spring.resource.ExceptionMessageHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
-@Configuration(value = "com.moensun.autoconfigure.exception.exceptionAutoConfiguration")
+@Configuration(value = "com.trionesdev.autoconfigure.exception.exceptionAutoConfiguration")
 @EnableConfigurationProperties(
         value = {
                 ExceptionProperties.class

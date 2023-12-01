@@ -1,4 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.moensun.boot.core.autoconfigure.CoreAutoConfiguration,\
-  com.moensun.boot.context.autoconfigure.ContextAutoConfiguration,\
-  com.moensun.boot.exception.autoconfigure.ExceptionAutoConfiguration
+com.trionesdev.boot.core.autoconfigure.CoreAutoConfiguration,\
+  com.trionesdev.boot.context.autoconfigure.ContextAutoConfiguration,\
+  com.trionesdev.boot.exception.autoconfigure.ExceptionAutoConfiguration

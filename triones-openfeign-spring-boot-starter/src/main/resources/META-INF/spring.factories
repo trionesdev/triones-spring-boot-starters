@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.moensun.boot.feign.autoconfigure.FeignAutoConfiguration
+com.trionesdev.boot.feign.autoconfigure.FeignAutoConfiguration

@@ -1,13 +1,13 @@
-package com.moensun.boot.core.autoconfigure;
+package com.trionesdev.boot.core.autoconfigure;
 
-import com.moensun.commons.core.spring.event.act.*;
-import com.moensun.commons.core.spring.permission.act.ActPermissionAspect;
+import com.trionesdev.commons.core.spring.event.act.*;
+import com.trionesdev.commons.core.spring.permission.act.ActPermissionAspect;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
-@Configuration(value = "com.moensun.autoconfigure.core.CoreAutoConfiguration")
+@Configuration(value = "com.trionesdev.autoconfigure.core.CoreAutoConfiguration")
 public class CoreAutoConfiguration {
 
     @Bean

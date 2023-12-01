@@ -1,12 +1,12 @@
-package com.moensun.boot.context.autoconfigure;
+package com.trionesdev.boot.context.autoconfigure;
 
-import com.moensun.commons.context.actor.ActorContext;
+import com.trionesdev.commons.context.actor.ActorContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
-@Configuration(value = "com.moensun.autoconfigure.context.contextAutoConfiguration")
+@Configuration(value = "com.trionesdev.autoconfigure.context.contextAutoConfiguration")
 public class ContextAutoConfiguration {
 
     @Bean

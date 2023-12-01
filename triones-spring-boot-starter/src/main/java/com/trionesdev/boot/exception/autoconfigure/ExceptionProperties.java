@@ -1,6 +1,6 @@
-package com.moensun.boot.exception.autoconfigure;
+package com.trionesdev.boot.exception.autoconfigure;
 
-import com.moensun.commons.exception.ExceptionResourceProperties;
+import com.trionesdev.commons.exception.ExceptionResourceProperties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

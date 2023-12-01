@@ -1,6 +1,6 @@
-package com.moensun.boot.feign.autoconfigure;
+package com.trionesdev.boot.feign.autoconfigure;
 
-import com.moensun.commons.feign.codec.DefaultErrorDecoder;
+import com.trionesdev.commons.feign.codec.DefaultErrorDecoder;
 import feign.Logger;
 import feign.codec.ErrorDecoder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

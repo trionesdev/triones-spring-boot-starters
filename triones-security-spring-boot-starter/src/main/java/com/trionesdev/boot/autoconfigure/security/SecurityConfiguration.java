@@ -1,4 +1,4 @@
-package com.moensun.boot.autoconfigure.security;
+package com.trionesdev.boot.autoconfigure.security;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

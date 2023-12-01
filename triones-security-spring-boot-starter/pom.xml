@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>triones-spring-boot-starters</artifactId>
-        <groupId>com.moensun.boot</groupId>
+        <groupId>com.trionesdev.boot</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -12,6 +12,7 @@
     <artifactId>triones-security-spring-boot-starter</artifactId>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
@@ -32,7 +33,7 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.moensun.commons</groupId>
+            <groupId>com.trionesdev.commons</groupId>
             <artifactId>triones-commons-security-spring</artifactId>
             <exclusions>
                 <exclusion>
