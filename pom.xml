@@ -14,6 +14,7 @@
         <module>triones-mybatis-plus-spring-boot-starter</module>
         <module>triones-security-spring-boot-starter</module>
         <module>triones-openfeign-spring-boot-starter</module>
+        <module>triones-opentelemetry-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -49,6 +50,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.trionesdev.opentelemetry</groupId>
+                <artifactId>triones-opentelemetry-spring-boot-starters</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -76,6 +84,11 @@
             <dependency>
                 <groupId>com.trionesdev.boot</groupId>
                 <artifactId>triones-mybatis-plus-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.trionesdev.boot</groupId>
+                <artifactId>triones-opentelemetry-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--moensun-boot-starter-->
