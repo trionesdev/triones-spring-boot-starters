@@ -66,6 +66,11 @@
                 <version>${mybatis-plus-boot.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>3.0.3</version>
+            </dependency>
+            <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-core</artifactId>
                 <version>5.8.27</version>
