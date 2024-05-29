@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -64,22 +65,40 @@ public class JwtSecurityConfiguration {
         List<String> ignoreMatcherList = Lists.newArrayList(ignoreMatchers);
         ignoreMatcherList.addAll(Lists.newArrayList(securityProperties.getIgnoreMatchers()));
 
-        http.csrf().disable()
-                .anonymous()
-                .and().authorizeRequests(authorizeRequests ->
-                        authorizeRequests
-                                .antMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()])).permitAll()
-                                .antMatchers(securityProperties.getExcludeMatchers()).permitAll()
-                                .antMatchers(HttpMethod.GET, securityProperties.getExcludeGetMatchers()).permitAll()
-                                .antMatchers(HttpMethod.POST, securityProperties.getExcludePostMatchers()).permitAll()
-                                .antMatchers(HttpMethod.PUT, securityProperties.getExcludePutMatchers()).permitAll()
-                                .antMatchers(HttpMethod.DELETE, securityProperties.getExcludeDeleteMatchers()).permitAll()
-                                .anyRequest().authenticated()
-
+        http.csrf(AbstractHttpConfigurer::disable)
+                .anonymous(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorizeRequests->
+                authorizeRequests
+                        .requestMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()])).permitAll()
+                        .requestMatchers(securityProperties.getExcludeMatchers()).permitAll()
+                        .requestMatchers(HttpMethod.GET, securityProperties.getExcludeGetMatchers()).permitAll()
+                        .requestMatchers(HttpMethod.POST, securityProperties.getExcludePostMatchers()).permitAll()
+                        .requestMatchers(HttpMethod.PUT, securityProperties.getExcludePutMatchers()).permitAll()
+                        .requestMatchers(HttpMethod.DELETE, securityProperties.getExcludeDeleteMatchers()).permitAll()
+                        .anyRequest().authenticated()
                 )
-                .apply(jwtServerConfigurer)
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().exceptionHandling((exceptions) -> exceptions.authenticationEntryPoint(new JwtAuthenticationEntryPoint()));
+                .with(jwtServerConfigurer,httpSecurityJwtServerConfigurer -> httpSecurityJwtServerConfigurer.configure(http))
+                .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(new JwtAuthenticationEntryPoint()))
+        ;
+
+
+//        http.csrf().disable()
+//                .anonymous()
+//                .and().authorizeRequests(authorizeRequests ->
+//                        authorizeRequests
+//                                .antMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()])).permitAll()
+//                                .antMatchers(securityProperties.getExcludeMatchers()).permitAll()
+//                                .antMatchers(HttpMethod.GET, securityProperties.getExcludeGetMatchers()).permitAll()
+//                                .antMatchers(HttpMethod.POST, securityProperties.getExcludePostMatchers()).permitAll()
+//                                .antMatchers(HttpMethod.PUT, securityProperties.getExcludePutMatchers()).permitAll()
+//                                .antMatchers(HttpMethod.DELETE, securityProperties.getExcludeDeleteMatchers()).permitAll()
+//                                .anyRequest().authenticated()
+//
+//                )
+//                .apply(jwtServerConfigurer)
+//                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and().exceptionHandling((exceptions) -> exceptions.authenticationEntryPoint(new JwtAuthenticationEntryPoint()));
         return http.build();
     }
 
