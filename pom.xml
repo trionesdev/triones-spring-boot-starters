@@ -66,6 +66,11 @@
                 <version>${mybatis-plus-boot.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.github.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>4.9</version>
+            </dependency>
+            <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
                 <version>3.0.3</version>
