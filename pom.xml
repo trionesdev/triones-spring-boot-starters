@@ -24,7 +24,7 @@
         <spring-boot.version>3.3.0</spring-boot.version>
         <spring-cloud.veriosn>2023.0.1</spring-cloud.veriosn>
         <mybatis-plus-boot.version>3.5.6</mybatis-plus-boot.version>
-        <moensun-commons.version>1.0-SNAPSHOT</moensun-commons.version>
+        <triones-spring-commons.version>3.0-SNAPSHOT</triones-spring-commons.version>
     </properties>
 
     <dependencyManagement>
@@ -47,8 +47,8 @@
             </dependency>
             <dependency>
                 <groupId>com.trionesdev.commons</groupId>
-                <artifactId>triones-commons</artifactId>
-                <version>${moensun-commons.version}</version>
+                <artifactId>triones-spring-commons</artifactId>
+                <version>${triones-spring-commons.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
