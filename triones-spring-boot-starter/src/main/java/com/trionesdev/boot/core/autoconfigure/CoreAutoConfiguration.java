@@ -1,7 +1,8 @@
 package com.trionesdev.boot.core.autoconfigure;
 
-import com.trionesdev.commons.core.spring.event.act.*;
-import com.trionesdev.commons.core.spring.permission.act.ActPermissionAspect;
+
+import com.trionesdev.spring.core.event.act.*;
+import com.trionesdev.spring.core.permission.act.ActPermissionAspect;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

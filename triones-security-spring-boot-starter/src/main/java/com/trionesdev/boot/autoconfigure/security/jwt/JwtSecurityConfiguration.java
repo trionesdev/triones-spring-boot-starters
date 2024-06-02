@@ -43,7 +43,7 @@ public class JwtSecurityConfiguration {
 
 
     @Bean
-    SecurityFilterChain securityWebFilterChain(HttpSecurity http, JwtFacade jwtFacade) throws Exception {
+    public SecurityFilterChain securityWebFilterChain(HttpSecurity http, JwtFacade jwtFacade) throws Exception {
         JwtTokenConfig jwtTokenConfig = JwtTokenConfig.builder()
                 .local(jwtSecurityProperties.getLocal())
                 .endpoint(jwtSecurityProperties.getEndpoint())
