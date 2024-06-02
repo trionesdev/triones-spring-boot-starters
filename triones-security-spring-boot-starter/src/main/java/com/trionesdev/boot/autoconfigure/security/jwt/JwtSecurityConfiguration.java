@@ -5,10 +5,10 @@ import com.trionesdev.boot.autoconfigure.security.SecurityProperties;
 import com.trionesdev.commons.context.actor.ActorContext;
 import com.trionesdev.commons.core.jwt.JwtConfig;
 import com.trionesdev.commons.core.jwt.JwtFacade;
-import com.trionesdev.commons.security.spring.jwt.JwtAuthenticationEntryPoint;
-import com.trionesdev.commons.security.spring.jwt.JwtAuthenticationFilter;
-import com.trionesdev.commons.security.spring.jwt.JwtServerConfigurer;
-import com.trionesdev.commons.security.spring.jwt.JwtTokenConfig;
+import com.trionesdev.spring.security.jwt.JwtAuthenticationEntryPoint;
+import com.trionesdev.spring.security.jwt.JwtAuthenticationFilter;
+import com.trionesdev.spring.security.jwt.JwtServerConfigurer;
+import com.trionesdev.spring.security.jwt.JwtTokenConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -41,14 +41,6 @@ public class JwtSecurityConfiguration {
         return new JwtFacade(JwtConfig.builder().secret(jwtSecurityProperties.getSecret()).expiration(jwtSecurityProperties.getExpiration()).build());
     }
 
-//    @Bean
-//    WebSecurityCustomizer webSecurityCustomizer() {
-//        String[] ignoreMatchers = {"/favicon.ico", "/v3/api-docs/**", "/v2/api-docs", "/webjars/**", "/swagger-resources/**",
-//                "/swagger-ui/**", "/swagger-ui.html", "/actuator/**", "/websocket/**"};
-//        List<String> ignoreMatcherList = Lists.newArrayList(ignoreMatchers);
-//        ignoreMatcherList.addAll(Lists.newArrayList(securityProperties.getIgnoreMatchers()));
-//        return (web) -> web.ignoring().antMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()]));
-//    }
 
     @Bean
     SecurityFilterChain securityWebFilterChain(HttpSecurity http, JwtFacade jwtFacade) throws Exception {
@@ -83,22 +75,6 @@ public class JwtSecurityConfiguration {
         ;
 
 
-//        http.csrf().disable()
-//                .anonymous()
-//                .and().authorizeRequests(authorizeRequests ->
-//                        authorizeRequests
-//                                .antMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()])).permitAll()
-//                                .antMatchers(securityProperties.getExcludeMatchers()).permitAll()
-//                                .antMatchers(HttpMethod.GET, securityProperties.getExcludeGetMatchers()).permitAll()
-//                                .antMatchers(HttpMethod.POST, securityProperties.getExcludePostMatchers()).permitAll()
-//                                .antMatchers(HttpMethod.PUT, securityProperties.getExcludePutMatchers()).permitAll()
-//                                .antMatchers(HttpMethod.DELETE, securityProperties.getExcludeDeleteMatchers()).permitAll()
-//                                .anyRequest().authenticated()
-//
-//                )
-//                .apply(jwtServerConfigurer)
-//                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().exceptionHandling((exceptions) -> exceptions.authenticationEntryPoint(new JwtAuthenticationEntryPoint()));
         return http.build();
     }
 

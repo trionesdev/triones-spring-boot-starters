@@ -29,6 +29,10 @@
             <artifactId>spring-boot-autoconfigure-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
@@ -42,7 +46,7 @@
         </dependency>
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
-            <artifactId>triones-commons-core-spring</artifactId>
+            <artifactId>triones-spring-core</artifactId>
         </dependency>
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
