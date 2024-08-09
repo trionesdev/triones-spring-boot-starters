@@ -1,0 +1,2 @@
+com.trionesdev.boot.autoconfigure.security.SecurityConfiguration
+com.trionesdev.boot.autoconfigure.security.jwt.JwtSecurityConfiguration

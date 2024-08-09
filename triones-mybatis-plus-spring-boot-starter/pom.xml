@@ -5,7 +5,7 @@
     <parent>
         <artifactId>triones-spring-boot-starters</artifactId>
         <groupId>com.trionesdev.boot</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>3.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <name>Triones:Boot:Mybatis-Plus</name>
@@ -13,16 +13,25 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis-spring</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
             <artifactId>triones-commons-mybatis-plus</artifactId>

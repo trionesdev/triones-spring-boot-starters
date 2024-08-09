@@ -5,10 +5,10 @@ import com.trionesdev.boot.autoconfigure.security.SecurityProperties;
 import com.trionesdev.commons.context.actor.ActorContext;
 import com.trionesdev.commons.core.jwt.JwtConfig;
 import com.trionesdev.commons.core.jwt.JwtFacade;
-import com.trionesdev.commons.security.spring.jwt.JwtAuthenticationEntryPoint;
-import com.trionesdev.commons.security.spring.jwt.JwtAuthenticationFilter;
-import com.trionesdev.commons.security.spring.jwt.JwtServerConfigurer;
-import com.trionesdev.commons.security.spring.jwt.JwtTokenConfig;
+import com.trionesdev.spring.security.jwt.JwtAuthenticationEntryPoint;
+import com.trionesdev.spring.security.jwt.JwtAuthenticationFilter;
+import com.trionesdev.spring.security.jwt.JwtServerConfigurer;
+import com.trionesdev.spring.security.jwt.JwtTokenConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -40,17 +41,9 @@ public class JwtSecurityConfiguration {
         return new JwtFacade(JwtConfig.builder().secret(jwtSecurityProperties.getSecret()).expiration(jwtSecurityProperties.getExpiration()).build());
     }
 
-//    @Bean
-//    WebSecurityCustomizer webSecurityCustomizer() {
-//        String[] ignoreMatchers = {"/favicon.ico", "/v3/api-docs/**", "/v2/api-docs", "/webjars/**", "/swagger-resources/**",
-//                "/swagger-ui/**", "/swagger-ui.html", "/actuator/**", "/websocket/**"};
-//        List<String> ignoreMatcherList = Lists.newArrayList(ignoreMatchers);
-//        ignoreMatcherList.addAll(Lists.newArrayList(securityProperties.getIgnoreMatchers()));
-//        return (web) -> web.ignoring().antMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()]));
-//    }
 
     @Bean
-    SecurityFilterChain securityWebFilterChain(HttpSecurity http, JwtFacade jwtFacade) throws Exception {
+    public SecurityFilterChain securityWebFilterChain(HttpSecurity http, JwtFacade jwtFacade) throws Exception {
         JwtTokenConfig jwtTokenConfig = JwtTokenConfig.builder()
                 .local(jwtSecurityProperties.getLocal())
                 .endpoint(jwtSecurityProperties.getEndpoint())
@@ -64,22 +57,24 @@ public class JwtSecurityConfiguration {
         List<String> ignoreMatcherList = Lists.newArrayList(ignoreMatchers);
         ignoreMatcherList.addAll(Lists.newArrayList(securityProperties.getIgnoreMatchers()));
 
-        http.csrf().disable()
-                .anonymous()
-                .and().authorizeRequests(authorizeRequests ->
-                        authorizeRequests
-                                .antMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()])).permitAll()
-                                .antMatchers(securityProperties.getExcludeMatchers()).permitAll()
-                                .antMatchers(HttpMethod.GET, securityProperties.getExcludeGetMatchers()).permitAll()
-                                .antMatchers(HttpMethod.POST, securityProperties.getExcludePostMatchers()).permitAll()
-                                .antMatchers(HttpMethod.PUT, securityProperties.getExcludePutMatchers()).permitAll()
-                                .antMatchers(HttpMethod.DELETE, securityProperties.getExcludeDeleteMatchers()).permitAll()
-                                .anyRequest().authenticated()
-
+        http.csrf(AbstractHttpConfigurer::disable)
+                .anonymous(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorizeRequests->
+                authorizeRequests
+                        .requestMatchers(ignoreMatcherList.toArray(new String[ignoreMatcherList.size()])).permitAll()
+                        .requestMatchers(securityProperties.getExcludeMatchers()).permitAll()
+                        .requestMatchers(HttpMethod.GET, securityProperties.getExcludeGetMatchers()).permitAll()
+                        .requestMatchers(HttpMethod.POST, securityProperties.getExcludePostMatchers()).permitAll()
+                        .requestMatchers(HttpMethod.PUT, securityProperties.getExcludePutMatchers()).permitAll()
+                        .requestMatchers(HttpMethod.DELETE, securityProperties.getExcludeDeleteMatchers()).permitAll()
+                        .anyRequest().authenticated()
                 )
-                .apply(jwtServerConfigurer)
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().exceptionHandling((exceptions) -> exceptions.authenticationEntryPoint(new JwtAuthenticationEntryPoint()));
+                .with(jwtServerConfigurer,httpSecurityJwtServerConfigurer -> httpSecurityJwtServerConfigurer.configure(http))
+                .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(new JwtAuthenticationEntryPoint()))
+        ;
+
+
         return http.build();
     }
 

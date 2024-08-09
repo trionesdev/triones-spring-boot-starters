@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.trionesdev.boot</groupId>
         <artifactId>triones-spring-boot-starters</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>3.0-SNAPSHOT</version>
     </parent>
     <artifactId>triones-opentelemetry-spring-boot-starter</artifactId>
     <name>Triones:Boot:OpenTelemetry</name>
@@ -21,7 +21,6 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
-            <version>5.8.18</version>
         </dependency>
     </dependencies>
 </project>
