@@ -1,11 +1,12 @@
 package com.trionesdev.boot.lock.autoconfigure;
 
 import com.trionesdev.commons.lock.TrionesLockTemplate;
-import com.trionesdev.commons.lock.redis.RedisLockClient;
-import com.trionesdev.commons.lock.thread.ThreadLockClient;
+import com.trionesdev.commons.lock.redis.RedisLockTemplate;
+import com.trionesdev.commons.lock.thread.ThreadLockTemplate;
 import com.trionesdev.spring.lock.LockAspect;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,14 +27,18 @@ public class LockAutoConfiguration {
     }
 
 
+    @ConditionalOnProperty(prefix = "triones.lock", value = "mode", havingValue = "thread", matchIfMissing = true)
     @Bean
-    public TrionesLockTemplate trionesLockTemplate() {
-        if (lockProperties.getMode() == LockProperties.Mode.REDIS) {
-            return new RedisLockClient(redissonClient);
-        } else {
-            return new ThreadLockClient();
-        }
+    public ThreadLockTemplate threadLockTemplate() {
+        return new ThreadLockTemplate();
     }
+
+    @ConditionalOnProperty(prefix = "triones.lock", value = "mode", havingValue = "redis")
+    @Bean
+    public RedisLockTemplate redisLockTemplate() {
+        return new RedisLockTemplate(redissonClient);
+    }
+
 
     @Bean
     public LockAspect lockAspect(TrionesLockTemplate lockTemplate) {
