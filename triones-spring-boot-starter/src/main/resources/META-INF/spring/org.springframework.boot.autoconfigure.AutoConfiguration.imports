@@ -1,3 +1,4 @@
 com.trionesdev.boot.core.autoconfigure.CoreAutoConfiguration
 com.trionesdev.boot.context.autoconfigure.ContextAutoConfiguration
 com.trionesdev.boot.exception.autoconfigure.ExceptionAutoConfiguration
+com.trionesdev.boot.lock.autoconfigure.LockAutoConfiguration
