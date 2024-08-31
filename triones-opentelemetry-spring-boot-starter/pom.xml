@@ -18,9 +18,5 @@
             <groupId>com.trionesdev.opentelemetry</groupId>
             <artifactId>opentelemetry-spring-cloud-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-core</artifactId>
-        </dependency>
     </dependencies>
 </project>

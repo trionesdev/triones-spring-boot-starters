@@ -1,9 +1,9 @@
 package com.trionesdev.boot.opentelemetry.util;
 
-import cn.hutool.core.map.MapUtil;
 import com.trionesdev.commons.context.actor.Actor;
 import io.opentelemetry.api.baggage.Baggage;
 import io.opentelemetry.api.baggage.BaggageEntry;
+import org.apache.commons.collections4.MapUtils;
 
 import java.time.Instant;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class OpenTelemetryUtils {
 
     public static Actor actor() {
         Map<String, BaggageEntry> baggageEntryMap = Baggage.current().asMap();
-        if (MapUtil.isEmpty(baggageEntryMap)) {
+        if (MapUtils.isEmpty(baggageEntryMap)) {
             return null;
         } else {
             Actor actor = new Actor();
