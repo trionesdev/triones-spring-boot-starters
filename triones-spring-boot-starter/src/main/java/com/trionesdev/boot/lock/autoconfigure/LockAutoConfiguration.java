@@ -1,45 +1,23 @@
 package com.trionesdev.boot.lock.autoconfigure;
 
 import com.trionesdev.commons.lock.TrionesLockTemplate;
-import com.trionesdev.commons.lock.redis.RedisLockTemplate;
-import com.trionesdev.commons.lock.thread.ThreadLockTemplate;
 import com.trionesdev.spring.lock.LockAspect;
-import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportSelector;
+import org.springframework.core.type.AnnotationMetadata;
 
 
-@Configuration(value = "com.trionesdev.boot.lock.autoconfigure.LockAutoConfiguration")
+@AutoConfiguration(value = "com.trionesdev.boot.lock.autoconfigure.LockAutoConfiguration", after = {
+        ThreadLockConfiguration.class, RedisLockConfiguration.class
+})
 @EnableConfigurationProperties(value = {
         LockProperties.class
 })
+@Import({LockAutoConfiguration.LockConfigurationImportSelector.class})
 public class LockAutoConfiguration {
-    private final LockProperties lockProperties;
-    private final RedissonClient redissonClient;
-
-    @Autowired
-    public LockAutoConfiguration(LockProperties lockProperties, @Autowired(required = false) RedissonClient redissonClient) {
-        this.lockProperties = lockProperties;
-        this.redissonClient = redissonClient;
-    }
-
-
-    @ConditionalOnProperty(prefix = "triones.lock", value = "mode", havingValue = "THREAD")
-    @Bean
-    public ThreadLockTemplate threadLockTemplate() {
-        return new ThreadLockTemplate();
-    }
-
-    @ConditionalOnMissingBean(TrionesLockTemplate.class)
-    @ConditionalOnProperty(prefix = "triones.lock", value = "mode", havingValue = "REDIS")
-    @Bean
-    public RedisLockTemplate redisLockTemplate() {
-        return new RedisLockTemplate(redissonClient);
-    }
 
 
     @Bean
@@ -47,5 +25,18 @@ public class LockAutoConfiguration {
         return new LockAspect(lockTemplate);
     }
 
+    static class LockConfigurationImportSelector implements ImportSelector {
+
+        @Override
+        public String[] selectImports(AnnotationMetadata importingClassMetadata) {
+            LockType[] types = LockType.values();
+            String[] imports = new String[types.length];
+            for (int i = 0; i < types.length; i++) {
+                imports[i] = LockConfigurations.getConfigurationClass(types[i]);
+            }
+            return imports;
+        }
+
+    }
 
 }

@@ -7,5 +7,4 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "triones.lock")
 public class LockProperties {
     private LockType type = LockType.THREAD;
-
 }

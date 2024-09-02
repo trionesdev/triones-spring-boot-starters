@@ -1,7 +1,5 @@
 package com.trionesdev.boot.lock.autoconfigure;
 
-import org.springframework.boot.autoconfigure.cache.CacheConfigurations;
-import org.springframework.boot.autoconfigure.cache.CacheType;
 import org.springframework.boot.autoconfigure.condition.ConditionMessage;
 import org.springframework.boot.autoconfigure.condition.ConditionOutcome;
 import org.springframework.boot.autoconfigure.condition.SpringBootCondition;
@@ -21,21 +19,21 @@ public class LockCondition extends SpringBootCondition {
         if (metadata instanceof ClassMetadata classMetadata) {
             sourceClass = classMetadata.getClassName();
         }
-        ConditionMessage.Builder message = ConditionMessage.forCondition("Cache", sourceClass);
+        ConditionMessage.Builder message = ConditionMessage.forCondition("Lock", sourceClass);
         Environment environment = context.getEnvironment();
         try {
-            BindResult<CacheType> specified = Binder.get(environment).bind("spring.cache.type", CacheType.class);
+            BindResult<LockType> specified = Binder.get(environment).bind("triones.lock.type", LockType.class);
             if (!specified.isBound()) {
-                return ConditionOutcome.match(message.because("automatic cache type"));
+                return ConditionOutcome.match(message.because("automatic lock type"));
             }
-            CacheType required = LockProperties=
+            LockType required = LockConfigurations.getType(((AnnotationMetadata) metadata).getClassName());
             if (specified.get() == required) {
-                return ConditionOutcome.match(message.because(specified.get() + " cache type"));
+                return ConditionOutcome.match(message.because(specified.get() + " lock type"));
             }
         }
         catch (BindException ex) {
             // Ignore
         }
-        return ConditionOutcome.noMatch(message.because("unknown cache type"));
+        return ConditionOutcome.noMatch(message.because("unknown lock type"));
     }
 }
