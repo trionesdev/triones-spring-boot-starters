@@ -6,10 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "triones.lock")
 public class LockProperties {
-    private Mode mode = Mode.THREAD;
+    private LockType type = LockType.THREAD;
 
-    public enum Mode {
-        THREAD,
-        REDIS
-    }
 }
