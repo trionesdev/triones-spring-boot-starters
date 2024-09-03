@@ -1,7 +1,5 @@
 package com.trionesdev.boot.web.autoconfigure.version;
 
-import com.trionesdev.boot.lock.autoconfigure.LockConfigurations;
-import com.trionesdev.boot.lock.autoconfigure.LockType;
 import org.springframework.boot.autoconfigure.condition.ConditionMessage;
 import org.springframework.boot.autoconfigure.condition.ConditionOutcome;
 import org.springframework.boot.autoconfigure.condition.SpringBootCondition;
