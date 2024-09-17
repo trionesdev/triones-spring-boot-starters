@@ -8,11 +8,13 @@ import com.trionesdev.spring.core.permission.act.ActPermissionAspect;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
 @Configuration(value = "com.trionesdev.autoconfigure.core.CoreAutoConfiguration")
+@EnableConfigurationProperties(value = {AppProperties.class})
 public class CoreAutoConfiguration implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
