@@ -3,6 +3,8 @@ package com.trionesdev.boot.core.autoconfigure;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trionesdev.commons.core.util.JsonUtils;
+import com.trionesdev.spring.core.audit.OperationAuditAspect;
+import com.trionesdev.spring.core.audit.OperationAuditProcess;
 import com.trionesdev.spring.core.event.act.*;
 import com.trionesdev.spring.core.permission.act.ActPermissionAspect;
 import lombok.RequiredArgsConstructor;
@@ -12,16 +14,27 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Configuration(value = "com.trionesdev.autoconfigure.core.CoreAutoConfiguration")
 @EnableConfigurationProperties(value = {AppProperties.class})
 public class CoreAutoConfiguration implements BeanPostProcessor {
+
+    private final List<OperationAuditProcess> processes;
+
+
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof ObjectMapper) {
             JsonUtils.setObjectMapper((ObjectMapper) bean);
         }
         return bean;
+    }
+
+    @Bean
+    public OperationAuditAspect auditLogAspect() {
+        return new OperationAuditAspect(processes);
     }
 
     @Bean
