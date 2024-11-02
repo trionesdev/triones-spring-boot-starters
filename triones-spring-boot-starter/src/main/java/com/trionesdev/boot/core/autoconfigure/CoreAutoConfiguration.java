@@ -4,7 +4,7 @@ package com.trionesdev.boot.core.autoconfigure;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trionesdev.commons.core.util.JsonUtils;
 import com.trionesdev.spring.core.audit.OperationAuditAspect;
-import com.trionesdev.spring.core.audit.OperationAuditProcess;
+import com.trionesdev.spring.core.audit.OperationAuditHandler;
 import com.trionesdev.spring.core.event.act.*;
 import com.trionesdev.spring.core.permission.act.ActPermissionAspect;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +21,8 @@ import java.util.List;
 @EnableConfigurationProperties(value = {AppProperties.class})
 public class CoreAutoConfiguration implements BeanPostProcessor {
 
-    private final List<OperationAuditProcess> processes;
 
-
+    //region 将容器的ObjectMapper注入到JsonUtils中
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof ObjectMapper) {
@@ -31,11 +30,16 @@ public class CoreAutoConfiguration implements BeanPostProcessor {
         }
         return bean;
     }
+    //endregion
+
+    //region 注册审计日志切面
+    private final List<OperationAuditHandler> handlers;
 
     @Bean
     public OperationAuditAspect auditLogAspect() {
-        return new OperationAuditAspect(processes);
+        return new OperationAuditAspect(handlers);
     }
+    //endregion
 
     @Bean
     public ActEventBeforeAspect actEventBeforeAspect() {
