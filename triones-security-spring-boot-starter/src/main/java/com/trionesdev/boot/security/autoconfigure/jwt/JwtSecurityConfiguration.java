@@ -1,7 +1,7 @@
-package com.trionesdev.boot.autoconfigure.security.jwt;
+package com.trionesdev.boot.security.autoconfigure.jwt;
 
 import com.google.common.collect.Lists;
-import com.trionesdev.boot.autoconfigure.security.SecurityProperties;
+import com.trionesdev.boot.security.autoconfigure.SecurityProperties;
 import com.trionesdev.commons.context.actor.ActorContext;
 import com.trionesdev.commons.core.jwt.JwtConfig;
 import com.trionesdev.commons.core.jwt.JwtFacade;

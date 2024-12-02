@@ -1,4 +1,4 @@
-package com.trionesdev.boot.autoconfigure.security;
+package com.trionesdev.boot.security.autoconfigure;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
