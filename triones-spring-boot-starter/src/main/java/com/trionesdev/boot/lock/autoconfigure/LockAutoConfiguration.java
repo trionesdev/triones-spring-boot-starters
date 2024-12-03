@@ -10,9 +10,7 @@ import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
 
-@AutoConfiguration(value = "com.trionesdev.boot.lock.autoconfigure.LockAutoConfiguration", after = {
-        ThreadLockConfiguration.class, RedisLockConfiguration.class
-})
+@AutoConfiguration(value = "com.trionesdev.boot.lock.autoconfigure.LockAutoConfiguration")
 @EnableConfigurationProperties(value = {
         LockProperties.class
 })
