@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnMissingBean({CacheFacade.class})
 @Conditional({CacheFacadeCondition.class})
 public class GenericCacheFacadeConfiguration {
+
     @Bean
     public <K,V> CacheFacade<K,V> simpleCacheFacade(
             ObjectProvider<CacheManager> cacheManager
