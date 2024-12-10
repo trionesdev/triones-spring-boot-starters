@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-@Configuration(value = "com.moensun.boot.autoconfigure.security.SecurityConfiguration")
+@Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties(value = {
         SecurityProperties.class
