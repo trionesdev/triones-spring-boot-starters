@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
-@Configuration(value = "com.trionesdev.autoconfigure.context.contextAutoConfiguration")
+@Configuration
 public class ContextAutoConfiguration {
 
     @Bean

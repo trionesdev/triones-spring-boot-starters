@@ -11,7 +11,7 @@ import org.springframework.core.type.AnnotationMetadata;
 
 
 @RequiredArgsConstructor
-@AutoConfiguration(value = "com.trionesdev.boot.web.autoconfigure.version.ApiVersionAutoConfiguration", after = {
+@AutoConfiguration(after = {
         ApiVersionPathConfiguration.class, ApiVersionHeaderConfiguration.class
 })
 @EnableConfigurationProperties(ApiVersionProperties.class)

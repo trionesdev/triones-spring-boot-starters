@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
-@AutoConfiguration(value = "com.trionesdev.boot.cache.autoconfigure.CacheFacadeAutoConfiguration", after = {
+@AutoConfiguration( after = {
         CacheAutoConfiguration.class,
 //        GenericCacheFacadeConfiguration.class,
 //        HazelcastCacheFacadeConfiguration.class,
