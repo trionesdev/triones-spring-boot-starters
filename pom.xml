@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.trionesdev.boot</groupId>
+    <groupId>com.trionesdev.spring.boot</groupId>
     <artifactId>triones-spring-boot-starters</artifactId>
     <packaging>pom</packaging>
     <version>3.0-SNAPSHOT</version>
@@ -78,27 +78,27 @@
             <!-- moensun-boot-starter-->
 
             <dependency>
-                <groupId>com.trionesdev.boot</groupId>
+                <groupId>com.trionesdev.spring.boot</groupId>
                 <artifactId>triones-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.trionesdev.boot</groupId>
+                <groupId>com.trionesdev.spring.boot</groupId>
                 <artifactId>triones-security-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.trionesdev.boot</groupId>
+                <groupId>com.trionesdev.spring.boot</groupId>
                 <artifactId>triones-openfeign-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.trionesdev.boot</groupId>
+                <groupId>com.trionesdev.spring.boot</groupId>
                 <artifactId>triones-mybatis-plus-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.trionesdev.boot</groupId>
+                <groupId>com.trionesdev.spring.boot</groupId>
                 <artifactId>triones-opentelemetry-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>

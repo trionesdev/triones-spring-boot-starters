@@ -1,2 +1,2 @@
-com.trionesdev.boot.opentelemetry.autoconfigure.OpentelemetrySpringWebAutoConfiguration
-com.trionesdev.boot.opentelemetry.autoconfigure.OpentelemetryFeignAuoConfiguration
+com.trionesdev.spring.boot.opentelemetry.autoconfigure.OpentelemetrySpringWebAutoConfiguration
+com.trionesdev.spring.boot.opentelemetry.autoconfigure.OpentelemetryFeignAuoConfiguration

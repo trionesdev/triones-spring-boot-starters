@@ -1,7 +1,7 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.trionesdev.boot.core.autoconfigure.CoreAutoConfiguration,\
-  com.trionesdev.boot.context.autoconfigure.ContextAutoConfiguration,\
-  com.trionesdev.boot.exception.autoconfigure.ExceptionAutoConfiguration,\
-  com.trionesdev.boot.lock.autoconfigure.LockAutoConfiguration,\
-  com.trionesdev.boot.cache.autoconfigure.CacheFacadeAutoConfiguration,\
-  com.trionesdev.boot.web.autoconfigure.version.ApiVersionAutoConfiguration
+com.trionesdev.spring.boot.core.autoconfigure.CoreAutoConfiguration,\
+  com.trionesdev.spring.boot.context.autoconfigure.ContextAutoConfiguration,\
+  com.trionesdev.spring.boot.exception.autoconfigure.ExceptionAutoConfiguration,\
+  com.trionesdev.spring.boot.lock.autoconfigure.LockAutoConfiguration,\
+  com.trionesdev.spring.boot.cache.autoconfigure.CacheFacadeAutoConfiguration,\
+  com.trionesdev.spring.boot.web.autoconfigure.version.ApiVersionAutoConfiguration
