@@ -1,4 +1,4 @@
-package com.trionesdev.boot.feign.autoconfigure;
+package com.trionesdev.spring.boot.feign.autoconfigure;
 
 import com.trionesdev.commons.feign.codec.DefaultErrorDecoder;
 import feign.Logger;

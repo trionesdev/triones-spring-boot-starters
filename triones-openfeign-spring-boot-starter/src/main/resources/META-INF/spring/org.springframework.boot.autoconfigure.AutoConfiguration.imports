@@ -1,1 +1,1 @@
-com.trionesdev.boot.feign.autoconfigure.FeignAutoConfiguration
+com.trionesdev.spring.boot.feign.autoconfigure.FeignAutoConfiguration
