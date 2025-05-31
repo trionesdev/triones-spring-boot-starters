@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>triones-spring-boot-starters</artifactId>
-        <groupId>com.trionesdev.boot</groupId>
-        <version>3.0-SNAPSHOT</version>
+        <groupId>com.trionesdev.springboot</groupId>
+        <version>3.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <name>Triones:Boot:Security</name>
+    <name>Triones:SpringBoot:Security</name>
     <artifactId>triones-security-spring-boot-starter</artifactId>
 
     <properties>

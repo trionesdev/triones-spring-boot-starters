@@ -4,126 +4,69 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.trionesdev.boot</groupId>
+    <groupId>com.trionesdev.springboot</groupId>
     <artifactId>triones-spring-boot-starters</artifactId>
     <packaging>pom</packaging>
-    <version>3.0-SNAPSHOT</version>
-    <name>Triones:Boot</name>
+    <version>3.0.0-SNAPSHOT</version>
+    <name>Triones:SpringBoot</name>
     <modules>
         <module>triones-spring-boot-starter</module>
         <module>triones-mybatis-plus-spring-boot-starter</module>
         <module>triones-security-spring-boot-starter</module>
         <module>triones-openfeign-spring-boot-starter</module>
         <module>triones-opentelemetry-spring-boot-starter</module>
+        <module>triones-spring-boot-dependencies</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <spring-boot.version>3.3.0</spring-boot.version>
-        <spring-cloud.veriosn>2023.0.1</spring-cloud.veriosn>
-        <mybatis-plus-boot.version>3.5.6</mybatis-plus-boot.version>
-        <triones-spring-commons.version>3.0-SNAPSHOT</triones-spring-commons.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.veriosn}</version>
-                <type>pom</type>
-                <scope>import</scope>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
-                <groupId>com.trionesdev.commons</groupId>
-                <artifactId>triones-spring-commons</artifactId>
-                <version>${triones-spring-commons.version}</version>
+                <groupId>com.trionesdev.springboot</groupId>
+                <artifactId>triones-spring-boot-dependencies</artifactId>
+                <version>${project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>com.trionesdev.opentelemetry</groupId>
-                <artifactId>triones-opentelemetry-spring-boot-starters</artifactId>
-                <version>1.0-SNAPSHOT</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-                <version>${mybatis-plus-boot.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.jsqlparser</groupId>
-                <artifactId>jsqlparser</artifactId>
-                <version>4.9</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis-spring</artifactId>
-                <version>3.0.3</version>
-            </dependency>
-            <!-- moensun-boot-starter-->
-
-            <dependency>
-                <groupId>com.trionesdev.boot</groupId>
-                <artifactId>triones-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.trionesdev.boot</groupId>
-                <artifactId>triones-security-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.trionesdev.boot</groupId>
-                <artifactId>triones-openfeign-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.trionesdev.boot</groupId>
-                <artifactId>triones-mybatis-plus-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.trionesdev.boot</groupId>
-                <artifactId>triones-opentelemetry-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <!--moensun-boot-starter-->
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <!--        <snapshotRepository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
-                <repository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-                </repository>-->
-        <snapshotRepository>
-            <id>moensun</id>
-            <url>https://nexus.moensun.com/repository/maven-snapshots/</url>
-        </snapshotRepository>
+
+    <repositories>
         <repository>
-            <id>moensun</id>
-            <url>https://nexus.moensun.com/repository/maven-releases/</url>
+            <id>ms-repository</id>
+            <url>https://nexus.moensun.com/repository/maven-public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
         </repository>
-    </distributionManagement>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>ms-repository</id>
+            <url>https://nexus.moensun.com/repository/maven-public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <build>
         <plugins>
@@ -156,35 +99,78 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>ms-repository</id>
-            <url>https://nexus.moensun.com/repository/maven-public/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>ms-repository</id>
-            <url>https://nexus.moensun.com/repository/maven-public/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+    <profiles>
+        <profile>
+            <id>moensun</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>moensun</id>
+                    <url>https://nexus.moensun.com/repository/maven-snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>moensun</id>
+                    <url>https://nexus.moensun.com/repository/maven-releases/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>central</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- （Option）2.  javadoc jar -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.7.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
