@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("triones.security.jwt")
 public class JwtSecurityProperties {
     private Boolean enabled;
-    private Boolean local = true;
+    private Boolean remote = false;
     private String endpoint;
     private String secret = "secret1234567890qwertyuiopasdfghg";
     private int expiration;
