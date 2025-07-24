@@ -101,16 +101,12 @@
 
     <profiles>
         <profile>
-            <id>moensun</id>
+            <id>trionesdev</id>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>moensun</id>
-                    <url>https://nexus.moensun.com/repository/maven-snapshots/</url>
+                    <id>trionesdev</id>
+                    <url>https://maven.cnb.cool/trionesdev/mvn/-/packages/</url>
                 </snapshotRepository>
-                <repository>
-                    <id>moensun</id>
-                    <url>https://nexus.moensun.com/repository/maven-releases/</url>
-                </repository>
             </distributionManagement>
         </profile>
         <profile>
