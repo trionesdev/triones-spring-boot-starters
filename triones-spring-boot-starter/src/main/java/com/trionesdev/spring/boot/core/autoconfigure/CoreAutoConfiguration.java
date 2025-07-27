@@ -1,6 +1,5 @@
 package com.trionesdev.spring.boot.core.autoconfigure;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trionesdev.commons.core.util.JsonUtils;
 import com.trionesdev.spring.core.audit.OperationAuditAspect;
@@ -20,8 +19,7 @@ import java.util.List;
 @Configuration
 @EnableConfigurationProperties(value = {AppProperties.class})
 public class CoreAutoConfiguration implements BeanPostProcessor {
-
-
+//    private final AppProperties appProperties;
     //region 将容器的ObjectMapper注入到JsonUtils中
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
