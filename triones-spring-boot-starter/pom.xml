@@ -45,7 +45,7 @@
 
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
-            <artifactId>triones-commons-context</artifactId>
+            <artifactId>commons-context</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.commons</groupId>
@@ -55,11 +55,11 @@
         </dependency>
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
-            <artifactId>triones-spring-core</artifactId>
+            <artifactId>spring-core</artifactId>
         </dependency>
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
-            <artifactId>triones-commons-exception</artifactId>
+            <artifactId>commons-exception</artifactId>
         </dependency>
         <dependency>
             <groupId>org.redisson</groupId>

@@ -40,7 +40,7 @@
         </dependency>
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
-            <artifactId>triones-spring-security</artifactId>
+            <artifactId>spring-security</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.security</groupId>

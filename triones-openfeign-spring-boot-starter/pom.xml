@@ -40,7 +40,7 @@
         </dependency>
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
-            <artifactId>triones-commons-feign</artifactId>
+            <artifactId>commons-feign</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>io.github.openfeign</groupId>

@@ -39,8 +39,8 @@
 
     <repositories>
         <repository>
-            <id>ms-repository</id>
-            <url>https://nexus.moensun.com/repository/maven-public/</url>
+            <id>trionesdev</id>
+            <url>https://maven.cnb.cool/trionesdev/mvn/-/packages/</url>
             <layout>default</layout>
             <releases>
                 <enabled>true</enabled>
@@ -54,8 +54,8 @@
     </repositories>
     <pluginRepositories>
         <pluginRepository>
-            <id>ms-repository</id>
-            <url>https://nexus.moensun.com/repository/maven-public/</url>
+            <id>trionesdev</id>
+            <url>https://maven.cnb.cool/trionesdev/mvn/-/packages/</url>
             <layout>default</layout>
             <releases>
                 <enabled>true</enabled>

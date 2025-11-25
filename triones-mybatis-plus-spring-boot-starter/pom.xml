@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>com.trionesdev.commons</groupId>
-            <artifactId>triones-commons-mybatis-plus</artifactId>
+            <artifactId>commons-mybatis-plus</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>com.baomidou</groupId>
