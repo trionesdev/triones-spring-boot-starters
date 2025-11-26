@@ -1,7 +1,6 @@
 package com.trionesdev.spring.boot.security.autoconfigure;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
