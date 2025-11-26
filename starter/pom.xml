@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>starter</artifactId>
-
+    <name>Triones:SpringBoot:Starter</name>
     <modules>
         <module>triones-spring-boot-starter</module>
         <module>triones-mybatis-plus-spring-boot-starter</module>
