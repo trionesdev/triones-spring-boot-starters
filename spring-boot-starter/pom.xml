@@ -10,7 +10,7 @@
         <version>3.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>starter</artifactId>
+    <artifactId>spring-boot-starter</artifactId>
     <name>Triones:SpringBoot:Starter</name>
     <modules>
         <module>triones-spring-boot-starter</module>

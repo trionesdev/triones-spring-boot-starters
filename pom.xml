@@ -10,7 +10,7 @@
     <name>Triones:SpringBoot</name>
     <modules>
         <module>triones-spring-boot-dependencies</module>
-        <module>starter</module>
+        <module>spring-boot-starter</module>
     </modules>
 
     <properties>
