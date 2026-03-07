@@ -70,6 +70,14 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>com.trionesdev.commons</groupId>
+                <artifactId>commons-dependencies</artifactId>
+                <version>0.0.2-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- moensun-boot-starter-->
 
             <dependency>

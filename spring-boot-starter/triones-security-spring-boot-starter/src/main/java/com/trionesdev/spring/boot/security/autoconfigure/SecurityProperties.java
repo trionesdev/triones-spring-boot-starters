@@ -12,11 +12,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @AllArgsConstructor
 @ConfigurationProperties("triones.security")
 public class SecurityProperties {
-    private String[] excludeMatchers = {};
-    private String[] excludeGetMatchers = {};
-    private String[] excludePostMatchers = {};
-    private String[] excludePutMatchers = {};
-    private String[] excludeDeleteMatchers = {};
+    private String tokenKey = "token";
+    private String secret = "trionesdev_secret";
+    private int expires = 86400;
+    private int refreshExpires = 2592000;
     private String[] ignoreMatchers = {};
-
+    private AuthorizeRequestProperties authorizeRequest;
 }
