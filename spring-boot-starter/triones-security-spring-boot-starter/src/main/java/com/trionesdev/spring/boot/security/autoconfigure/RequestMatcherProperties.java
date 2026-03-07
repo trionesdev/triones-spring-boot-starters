@@ -7,7 +7,7 @@ import org.springframework.http.HttpMethod;
 public class RequestMatcherProperties {
     private HttpMethod method;
     private String[] patterns = {};
-    private AuthorizeType authorizeType;
+    private AuthorizeType authorizeType = AuthorizeType.permitAll;
     private RequestMatcherVariable variable;
     private String[] role = {};
     private String[] authority = {};

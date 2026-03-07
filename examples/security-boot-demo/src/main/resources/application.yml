@@ -1,0 +1,5 @@
+triones:
+  security:
+    authorize-request:
+      request-matchers:
+        - patterns: /user/hello

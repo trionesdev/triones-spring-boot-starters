@@ -20,9 +20,6 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
-
-
-
     <repositories>
         <repository>
             <id>trionesdev</id>
