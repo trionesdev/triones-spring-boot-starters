@@ -11,6 +11,7 @@
     <modules>
         <module>triones-spring-boot-dependencies</module>
         <module>spring-boot-starter</module>
+        <module>examples</module>
     </modules>
 
     <properties>
