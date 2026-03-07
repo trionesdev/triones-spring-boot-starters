@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -47,10 +48,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityTokenConfig securityTokenConfig() {
         return SecurityTokenConfig.builder()
-                .tokenKey(properties.getTokenKey())
-                .secret(properties.getSecret())
+                .headerKey(properties.getHeaderKey())
+                .queryParamKey(properties.getQueryParamKey())
                 .expires(properties.getExpires())
                 .refreshExpires(properties.getRefreshExpires())
+                .jwt(properties.getJwt())
                 .build();
     }
 
@@ -68,7 +70,9 @@ public class SecurityConfiguration {
         GeneralAuthenticationConfigurer<HttpSecurity> authenticationConfigurer = new GeneralAuthenticationConfigurer<>(authExecutor);
         authenticationConfigurer.setAuthenticationInterceptor(authenticationInterceptor.getIfAvailable());
 
-        http.authorizeHttpRequests(authorizeHttpRequests -> {
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorizeHttpRequests -> {
                             Optional.ofNullable(properties.getAuthorizeRequest()).map(AuthorizeRequestProperties::getRequestMatchers).ifPresent(requestMatchers -> {
                                 if (ArrayUtils.isNotEmpty(requestMatchers)) {
                                     Arrays.stream(requestMatchers).forEach(requestMatcher -> {
@@ -115,7 +119,8 @@ public class SecurityConfiguration {
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(e ->
                         e.authenticationEntryPoint(new JsonAuthenticationEntryPoint())
-                                .accessDeniedHandler(new JsonAccessDeniedHandler()))
+                                .accessDeniedHandler(new JsonAccessDeniedHandler())
+                )
         ;
         return http.build();
     }

@@ -2,4 +2,4 @@ triones:
   security:
     authorize-request:
       request-matchers:
-        - patterns: /user/hello
+        - patterns: /user/hello,/login
