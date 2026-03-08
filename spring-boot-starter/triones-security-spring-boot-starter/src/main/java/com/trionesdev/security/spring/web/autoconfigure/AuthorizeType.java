@@ -1,4 +1,4 @@
-package com.trionesdev.spring.boot.security.autoconfigure;
+package com.trionesdev.security.spring.web.autoconfigure;
 
 public enum AuthorizeType {
     permitAll,

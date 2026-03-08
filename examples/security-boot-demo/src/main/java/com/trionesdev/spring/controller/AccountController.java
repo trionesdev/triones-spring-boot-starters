@@ -1,6 +1,6 @@
 package com.trionesdev.spring.controller;
 
-import com.trionesdev.spring.security.token.Token;
+import com.trionesdev.spring.security.token.SecurityToken;
 import com.trionesdev.spring.security.token.TokenDefinition;
 import com.trionesdev.spring.security.token.TokenManager;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
     private final TokenManager tokenManager;
     @PostMapping("/login")
-    public Token login() {
+    public SecurityToken login() {
         return tokenManager.createToken(TokenDefinition.builder().subject("123").build());
     }
 

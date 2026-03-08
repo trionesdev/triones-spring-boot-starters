@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.trionesdev.spring.boot.security.autoconfigure.SecurityConfiguration
+com.trionesdev.security.spring.web.autoconfigure.SecurityConfiguration

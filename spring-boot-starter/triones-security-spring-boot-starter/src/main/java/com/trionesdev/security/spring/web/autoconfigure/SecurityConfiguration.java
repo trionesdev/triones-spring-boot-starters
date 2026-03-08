@@ -1,9 +1,12 @@
-package com.trionesdev.spring.boot.security.autoconfigure;
+package com.trionesdev.security.spring.web.autoconfigure;
 
 import com.trionesdev.spring.security.*;
-import com.trionesdev.spring.security.jwt.JwtAuthenticationExecutor;
-import com.trionesdev.spring.security.jwt.JwtTokenManager;
+import com.trionesdev.spring.security.web.TokenAuthenticationExecutor;
+import com.trionesdev.spring.security.web.DefaultTokenManager;
 import com.trionesdev.spring.security.token.TokenManager;
+import com.trionesdev.spring.security.web.GeneralAuthenticationConfigurer;
+import com.trionesdev.spring.security.web.TokenAccessDeniedHandler;
+import com.trionesdev.spring.security.web.TokenAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.ObjectProvider;
@@ -59,12 +62,12 @@ public class SecurityConfiguration {
     @Bean
     @ConditionalOnMissingBean(TokenManager.class)
     public TokenManager tokenManager(SecurityTokenConfig config) {
-        return new JwtTokenManager(config);
+        return new DefaultTokenManager(config);
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityTokenConfig config) throws Exception {
-        var authExecutor = new JwtAuthenticationExecutor(config);
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, ObjectProvider<SecurityTokenConfig> config) throws Exception {
+        var authExecutor = new TokenAuthenticationExecutor(config.getIfAvailable());
         authExecutor.setAuthorityManager(authorityManager.getIfAvailable());
 
         GeneralAuthenticationConfigurer<HttpSecurity> authenticationConfigurer = new GeneralAuthenticationConfigurer<>(authExecutor);
@@ -118,8 +121,8 @@ public class SecurityConfiguration {
                 .with(authenticationConfigurer, Customizer.withDefaults())
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(e ->
-                        e.authenticationEntryPoint(new JsonAuthenticationEntryPoint())
-                                .accessDeniedHandler(new JsonAccessDeniedHandler())
+                        e.authenticationEntryPoint(new TokenAuthenticationEntryPoint())
+                                .accessDeniedHandler(new TokenAccessDeniedHandler())
                 )
         ;
         return http.build();

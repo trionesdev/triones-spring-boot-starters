@@ -1,4 +1,4 @@
-package com.trionesdev.spring.boot.security.autoconfigure;
+package com.trionesdev.security.spring.web.autoconfigure;
 
 import com.trionesdev.spring.security.SecurityTokenConfig;
 import lombok.Data;

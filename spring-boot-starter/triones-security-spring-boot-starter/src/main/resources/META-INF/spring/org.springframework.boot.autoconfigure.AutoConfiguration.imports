@@ -1,1 +1,1 @@
-com.trionesdev.spring.boot.security.autoconfigure.SecurityConfiguration
+com.trionesdev.security.spring.web.autoconfigure.SecurityConfiguration
