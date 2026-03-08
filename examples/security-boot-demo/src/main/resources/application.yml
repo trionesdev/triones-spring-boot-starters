@@ -1,6 +1,7 @@
 triones:
   security:
-    jwt-mode: false
+    authType: bearerToken
+    tokenType: randomString
     authorize-request:
       request-matchers:
         - patterns: /login,/profile

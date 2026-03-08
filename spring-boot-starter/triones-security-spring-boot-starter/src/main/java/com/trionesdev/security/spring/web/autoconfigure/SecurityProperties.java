@@ -16,7 +16,7 @@ public class SecurityProperties {
     private AuthType authType = AuthType.jwt;
     private TokenType tokenType = TokenType.jwt;
     private TokenStyle tokenStyle = TokenStyle.uuid;
-
+    private Boolean enableRefresh = false;
     private String secret = "trionesdev_secret";
     private int expires = 86400;
     private int refreshExpires = 2592000;

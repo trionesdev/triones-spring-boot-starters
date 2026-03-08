@@ -1,6 +1,7 @@
 package com.trionesdev.security.spring.web.autoconfigure;
 
 import com.trionesdev.spring.security.*;
+import com.trionesdev.spring.security.token.DefaultTokenStorage;
 import com.trionesdev.spring.security.token.TokenStorage;
 import com.trionesdev.spring.security.web.*;
 import com.trionesdev.spring.security.token.TokenManager;
@@ -60,24 +61,32 @@ public class SecurityConfiguration {
                 .expires(properties.getExpires())
                 .refreshExpires(properties.getRefreshExpires())
                 .tokenStyle(properties.getTokenStyle())
-
+                .authType(properties.getAuthType())
+                .tokenType(properties.getTokenType())
+                .enableRefresh(properties.getEnableRefresh())
                 .secret(properties.getSecret())
                 .build();
     }
 
     @Bean
+    @ConditionalOnMissingBean(TokenStorage.class)
+    public TokenStorage tokenStorage() {
+        return new DefaultTokenStorage();
+    }
+
+    @Bean
     @ConditionalOnMissingBean(TokenManager.class)
-    public TokenManager tokenManager(SecurityTokenConfig config) {
+    public TokenManager tokenManager(SecurityTokenConfig config, TokenStorage tokenStorage) {
         if (Objects.equals(config.getAuthType(), AuthType.jwt)) {
-            return new JwtTokenManager(config);
-        } else if (Objects.equals(config.getAuthType(), AuthType.apiKey)) {
+            return new JwtTokenManager(config, tokenStorage);
+        } else if (Objects.equals(config.getAuthType(), AuthType.apiKey) || Objects.equals(config.getAuthType(), AuthType.bearerToken)) {
             if (Objects.equals(config.getTokenType(), TokenType.jwt)) {
-                return new JwtTokenManager(config);
+                return new JwtTokenManager(config, tokenStorage);
             } else {
-                return new DefaultTokenManager(config);
+                return new DefaultTokenManager(config, tokenStorage);
             }
         }
-        return null;
+        return new DefaultTokenManager(config, tokenStorage);
     }
 
     @Bean
