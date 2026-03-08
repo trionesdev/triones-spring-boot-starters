@@ -1,5 +1,6 @@
 triones:
   security:
+    jwt-mode: false
     authorize-request:
       request-matchers:
-        - patterns: /user/hello,/login
+        - patterns: /login,/profile

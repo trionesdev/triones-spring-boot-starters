@@ -1,6 +1,8 @@
 package com.trionesdev.security.spring.web.autoconfigure;
 
-import com.trionesdev.spring.security.SecurityTokenConfig;
+import com.trionesdev.spring.security.AuthType;
+import com.trionesdev.spring.security.TokenStyle;
+import com.trionesdev.spring.security.TokenType;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -11,7 +13,11 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 public class SecurityProperties {
     private String headerKey = AUTHORIZATION;
     private String queryParamKey = "token";
-    private SecurityTokenConfig.Jwt jwt;
+    private AuthType authType = AuthType.jwt;
+    private TokenType tokenType = TokenType.jwt;
+    private TokenStyle tokenStyle = TokenStyle.uuid;
+
+    private String secret = "trionesdev_secret";
     private int expires = 86400;
     private int refreshExpires = 2592000;
     private String[] ignoreMatchers = {};

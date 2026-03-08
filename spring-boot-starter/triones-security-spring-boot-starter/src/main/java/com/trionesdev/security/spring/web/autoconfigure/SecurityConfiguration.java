@@ -1,29 +1,33 @@
 package com.trionesdev.security.spring.web.autoconfigure;
 
 import com.trionesdev.spring.security.*;
-import com.trionesdev.spring.security.web.TokenAuthenticationExecutor;
-import com.trionesdev.spring.security.web.DefaultTokenManager;
+import com.trionesdev.spring.security.token.TokenStorage;
+import com.trionesdev.spring.security.web.*;
 import com.trionesdev.spring.security.token.TokenManager;
-import com.trionesdev.spring.security.web.GeneralAuthenticationConfigurer;
-import com.trionesdev.spring.security.web.TokenAccessDeniedHandler;
-import com.trionesdev.spring.security.web.TokenAuthenticationEntryPoint;
+import com.trionesdev.spring.security.web.jwt.JwtAuthenticationProvider;
+import com.trionesdev.spring.security.web.jwt.JwtTokenManager;
+import com.trionesdev.spring.security.web.token.DefaultTokenManager;
+import com.trionesdev.spring.security.web.token.TokenAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -55,27 +59,67 @@ public class SecurityConfiguration {
                 .queryParamKey(properties.getQueryParamKey())
                 .expires(properties.getExpires())
                 .refreshExpires(properties.getRefreshExpires())
-                .jwt(properties.getJwt())
+                .tokenStyle(properties.getTokenStyle())
+
+                .secret(properties.getSecret())
                 .build();
     }
 
     @Bean
     @ConditionalOnMissingBean(TokenManager.class)
     public TokenManager tokenManager(SecurityTokenConfig config) {
-        return new DefaultTokenManager(config);
+        if (Objects.equals(config.getAuthType(), AuthType.jwt)) {
+            return new JwtTokenManager(config);
+        } else if (Objects.equals(config.getAuthType(), AuthType.apiKey)) {
+            if (Objects.equals(config.getTokenType(), TokenType.jwt)) {
+                return new JwtTokenManager(config);
+            } else {
+                return new DefaultTokenManager(config);
+            }
+        }
+        return null;
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, ObjectProvider<SecurityTokenConfig> config) throws Exception {
-        var authExecutor = new TokenAuthenticationExecutor(config.getIfAvailable());
-        authExecutor.setAuthorityManager(authorityManager.getIfAvailable());
+    @ConditionalOnMissingBean(AuthenticationExecutor.class)
+    public AuthenticationExecutor authenticationExecutor(
+            ObjectProvider<SecurityTokenConfig> config,
+            ObjectProvider<AuthorityManager> authorityManager
+    ) {
+        AbstractAuthenticationExecutor executor = new TokenAuthenticationExecutor(config.getIfAvailable());
+        executor.setAuthorityManager(authorityManager.getIfAvailable());
+        return executor;
+    }
 
-        GeneralAuthenticationConfigurer<HttpSecurity> authenticationConfigurer = new GeneralAuthenticationConfigurer<>(authExecutor);
+    @Bean
+    public AuthenticationProvider authenticationProvider(
+            SecurityTokenConfig config,
+            ObjectProvider<AuthorityManager> authorityManager,
+            ObjectProvider<TokenStorage> tokenStorage
+    ) {
+        if (Objects.equals(config.getAuthType(), AuthType.jwt)) {
+            return new JwtAuthenticationProvider(config, authorityManager.getIfAvailable(), tokenStorage.getIfAvailable());
+        }
+        return new TokenAuthenticationProvider(
+                config,
+                authorityManager.getIfAvailable(),
+                tokenStorage.getIfAvailable()
+        );
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http,
+            ObjectProvider<AuthenticationExecutor> authenticationExecutor,
+            ObjectProvider<AuthenticationProvider> authenticationProvider
+    ) throws Exception {
+
+        GeneralAuthenticationConfigurer<HttpSecurity> authenticationConfigurer = new GeneralAuthenticationConfigurer<>(authenticationExecutor.getIfAvailable());
         authenticationConfigurer.setAuthenticationInterceptor(authenticationInterceptor.getIfAvailable());
 
-        http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorizeHttpRequests -> {
+        authenticationProvider.ifAvailable(http::authenticationProvider);
+        http.csrf(CsrfConfigurer::disable);
+        http.authorizeHttpRequests(authorizeHttpRequests -> {
                             Optional.ofNullable(properties.getAuthorizeRequest()).map(AuthorizeRequestProperties::getRequestMatchers).ifPresent(requestMatchers -> {
                                 if (ArrayUtils.isNotEmpty(requestMatchers)) {
                                     Arrays.stream(requestMatchers).forEach(requestMatcher -> {
