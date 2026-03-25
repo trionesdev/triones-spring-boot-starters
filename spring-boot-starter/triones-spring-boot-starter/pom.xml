@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.trionesdev.springboot</groupId>
         <artifactId>spring-boot-starter</artifactId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.0.2-SNAPSHOT</version>
     </parent>
     <artifactId>triones-spring-boot-starter</artifactId>
     <name>Triones:SpringBoot:Core</name>
