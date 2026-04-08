@@ -6,11 +6,11 @@
     <packaging>pom</packaging>
     <parent>
         <groupId>com.trionesdev.springboot</groupId>
-        <artifactId>triones-spring-boot-starters</artifactId>
+        <artifactId>triones-spring-boot</artifactId>
         <version>3.0.2-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-starter</artifactId>
+    <artifactId>triones-spring-boot-starters</artifactId>
     <name>Triones:SpringBoot:Starter</name>
     <modules>
         <module>triones-spring-boot-starter</module>
